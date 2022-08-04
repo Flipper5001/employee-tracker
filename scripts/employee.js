@@ -10,25 +10,25 @@ left join employee_cms.employees m on e.manager_id = m.id`
 
 async function viewEmployees(){
   const database = await connect();
-  const [employees] = await database.query(viewEmployeesString + ' ' + `ORDER BY id`);
+  const [employees] = await database.query(viewEmployeesString + ' ' + 'ORDER BY id');
   return employees;
 }
 
 async function viewEmployeesByManager(){
   const database = await connect();
-  const [employees] = await database.query(viewEmployeesString + ' ' + `ORDER BY manager`)
+  const [employees] = await database.query(viewEmployeesString + ' ' + 'ORDER BY manager')
   return employees;
 }
 
 async function viewEmployeesByDepartment(){
   const database = await connect();
-  const [employees] = await database.query(viewEmployeesString + ' ' + `ORDER BY department`)
+  const [employees] = await database.query(viewEmployeesString + ' ' + 'ORDER BY department')
   return employees;
 }
 
 async function answerEmployees(){
   const database = await connect();
-  const [employees] = await database.query('SELECT * FROM employees ORDER BY id')
+  const [employees] = await database.query('SELECT * FROM `employees` ORDER BY id')
   return employees;
 }
 
@@ -39,17 +39,17 @@ async function addEmployees(firstName, lastName, title, manager_id){
 
 async function updateEmployees(employee_id, role_id){
   const database = await connect();
-  await database.query(`UPDATE employees SET role_id = ? WHERE id = ?;`,[role_id, employee_id])
+  await database.query('UPDATE `employees` SET role_id = ? WHERE id = ?;',[role_id, employee_id])
 }
 
 async function updateManager(employee_id, manager_id){
   const database = await connect();
-  await database.query(`UPDATE employees SET manager_id = ? WHERE id = ?;`, [manager_id, employee_id])
+  await database.query('UPDATE `employees` SET manager_id = ? WHERE id = ?;', [manager_id, employee_id])
 }
 
 async function deleteEmployee(id){
   const database = await connect();
-  await database.query('DELETE FROM employees WHERE id = ?',id);
+  await database.query('DELETE FROM `employees` WHERE id = ?',id);
 }
 
 module.exports = {

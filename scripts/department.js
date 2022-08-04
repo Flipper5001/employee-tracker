@@ -4,7 +4,7 @@ const { connect } = require("../db/connect");
 
 async function viewDepartments(){
     const database = await connect();
-    const [departments] = await database.query('SELECT * FROM departments ORDER BY id');
+    const [departments] = await database.query('SELECT * FROM `departments` ORDER BY id');
     return departments;
 }
 
@@ -15,7 +15,7 @@ async function addDepartments(department){
 
 async function deleteDepartment(id){
     const database = await connect();
-    await database.query('DELETE FROM departments WHERE id = ?',id);
+    await database.query('DELETE FROM `departments` WHERE id = ?',id);
 }
 
 module.exports ={

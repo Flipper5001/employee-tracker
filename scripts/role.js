@@ -4,8 +4,7 @@ const { connect } = require("../db/connect");
 
 async function viewRoles(){
     const database = await connect();
-    const [roles] = await database.query(`
-    SELECT roles.id, roles.title, roles.salary, departments.name AS department FROM roles 
+    const [roles] = await database.query(`SELECT roles.id, roles.title, roles.salary, departments.name AS department FROM roles 
     INNER JOIN departments ON departments.id = roles.department_id
     ORDER BY id`)
     return roles;
@@ -13,7 +12,7 @@ async function viewRoles(){
 
 async function answerRoles(){
     const database = await connect();
-    const [roles] = await database.query('SELECT * FROM roles ORDER BY id')
+    const [roles] = await database.query('SELECT * FROM `roles` ORDER BY id')
     return roles;
 }
 
@@ -24,7 +23,7 @@ async function addRoles(role, salary, department_id){
 
 async function deleteRoles(id){
     const database = await connect();
-    await database.query('DELETE FROM roles WHERE id = ?',id);
+    await database.query('DELETE FROM `roles` WHERE id = ?',id);
 }
 
 module.exports ={
