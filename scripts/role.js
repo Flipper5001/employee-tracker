@@ -19,7 +19,7 @@ async function answerRoles(){
 
 async function addRoles(role, salary, department_id){
     const database = await connect();
-    await database.query(`INSERT INTO employee_cms.roles (title, salary, department_id) VALUES ('${role}', '${salary}', '${department_id}')`)
+    await database.query('INSERT INTO `employee_cms`.`roles` (`title`, `salary`, `department_id`) VALUES (?, ?, ?)', [role, salary, department_id])
 }
 
 async function deleteRoles(id){

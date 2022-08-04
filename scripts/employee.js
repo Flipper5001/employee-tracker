@@ -34,17 +34,17 @@ async function answerEmployees(){
 
 async function addEmployees(firstName, lastName, title, manager_id){
   const database = await connect();
-  await database.query(`INSERT INTO employee_cms.employees (first_name, last_name, role_id, manager_id) VALUES ("${firstName}", "${lastName}", "${title}", ${manager_id})`)
+  await database.query('INSERT INTO `employee_cms`.`employees` (`first_name`, `last_name`, `role_id`, `manager_id`) VALUES (?, ?, ?, ?)', [firstName, lastName, title, manager_id])
 }
 
 async function updateEmployees(employee_id, role_id){
   const database = await connect();
-  await database.query(`UPDATE employees SET role_id = ${role_id} WHERE id = ${employee_id};`)
+  await database.query(`UPDATE employees SET role_id = ? WHERE id = ?;`,[role_id, employee_id])
 }
 
 async function updateManager(employee_id, manager_id){
   const database = await connect();
-  await database.query(`UPDATE employees SET manager_id = ${manager_id} WHERE id = ${employee_id};`)
+  await database.query(`UPDATE employees SET manager_id = ? WHERE id = ?;`, [manager_id, employee_id])
 }
 
 async function deleteEmployee(id){
